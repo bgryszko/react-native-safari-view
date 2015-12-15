@@ -25,7 +25,7 @@ RCT_EXPORT_METHOD(show:(NSDictionary *)args callback:(RCTResponseSenderBlock)cal
     UIViewController *ctrl = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [ctrl presentViewController:safariView animated:YES completion:nil];
 
-    [self.bridge.eventDispatcher sendAppEventWithName:@"SafariViewOnShow" body:nil];
+    [self.bridge.eventDispatcher sendDeviceEventWithName:@"SafariViewOnShow" body:@{@"name": @"eventName"}];
 }
 
 RCT_EXPORT_METHOD(isAvailable:(RCTResponseSenderBlock)callback)
@@ -43,8 +43,8 @@ RCT_EXPORT_METHOD(isAvailable:(RCTResponseSenderBlock)callback)
 {
     [controller dismissViewControllerAnimated:true completion:nil];
     NSLog(@"[SafariView] SafariView dismissed.");
-
-    [self.bridge.eventDispatcher sendAppEventWithName:@"SafariViewOnDismiss" body:nil];
+    
+    [self.bridge.eventDispatcher sendAppEventWithName:@"SafariViewOnDismiss" body:@{@"name": @"eventName"}];
 }
 
 @end
